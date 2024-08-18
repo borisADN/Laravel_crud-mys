@@ -1,0 +1,18 @@
+ $path = public_path('uploads/images/'.$post->image);
+            // if(file_exists($path)){
+            //     unlink($path);
+            if(\File::exists($path)){
+                \File::delete($path);
+            }
+            
+            
+
+            $imageName = time().'.'.$request->image->getClientOriginalExtension();
+            $request->image->move(public_path('uploads/images'), $imageName);
+            $data['image'] = $imageName;
+        }else{
+            $data['image'] = $post->image;
+        }
+            // $imageName = time().'.'.$request->image->getClientOriginalExtension();
+            // $request->image->move(public_path('uploads/images'), $imageName);
+            // $data['image'] = $imageName;
