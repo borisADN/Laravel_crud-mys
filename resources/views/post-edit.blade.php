@@ -7,7 +7,15 @@
     <title>LARAVEL CRUD</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
 </head>
+<style>
+    body {
+        font-family: 'Baloo 2', cursive;
+    }
+</style>
 
 <body>
     <section class="py-5">
@@ -16,7 +24,8 @@
                 <div class="col-md-5">
                     <div class="card p-3">
                         <h2>Edit {{ $post->title }}</h2>
-                        <form action="{{ route('post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('post.update', $post->id) }}" method="POST"
+                            enctype="multipart/form-data">
 
                             @csrf
 
@@ -37,12 +46,7 @@
                                 <?php
                                 $imagePath = public_path('uploads/images/' . $post->image);
                                 $imageExists = file_exists($imagePath);
-                                // $defaultImage = asset('uploads/images/default.png');
-                                ?>   
-                               {{-- <img class="img-fluid" width="100px" 
-                               src="{{ !$imageExists ? asset('uploads/default.png') :  asset('uploads/images/'.$post->image) }}" 
-                               src="{{ $imageExists ? asset('uploads/images/'.$post->image) : asset('uploads/default.png') }}" 
-                               alt=""> --}}
+                                ?>
                                 <img width="300px" src="{{ asset('uploads/images/' . $post->image) }}" alt="">
                                 @error('image')
                                     <div class="alert alert-danger">{{ $message }}</div>

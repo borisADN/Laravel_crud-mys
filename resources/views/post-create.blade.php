@@ -6,8 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap" rel="stylesheet">
     <title>LARAVEL CRUD </title>
 </head>
+<style>
+    body {
+        font-family: 'Baloo 2', cursive;
+    }
+</style>
 
 <body>
     <section>
@@ -70,36 +78,36 @@
                             </tr>
                         </thead>
                         <tbody>
-@foreach ($posts as $post)
-<tr>
-    <th scope="row">{{ $post->id }}</th>
-    <td>{{ $post->title }}</td>
-    <?php 
-        $imagePath = public_path('uploads/images/'.$post->image);
-        $imageExists = file_exists($imagePath);
-    // $defaultImage = asset('uploads/images/default.png');
-    ?>
-    <td>
-        <img class="img-fluid" width="100px" 
-             src="{{ !$imageExists ? asset('uploads/default.png') :  asset('uploads/images/'.$post->image) }}" 
-             {{-- src="{{ $imageExists ? asset('uploads/images/'.$post->image) : asset('uploads/default.png') }}"  --}}
-             alt="">
-    </td>
-    <td>{{ Str::limit($post->body, 150, '...') }}</td>
+                            @foreach ($posts as $post)
+                                <tr>
+                                    <th scope="row">{{ $post->id }}</th>
+                                    <td>{{ $post->title }}</td>
+                                    <?php
+                                    $imagePath = public_path('uploads/images/' . $post->image);
+                                    $imageExists = file_exists($imagePath);
+                                    // $defaultImage = asset('uploads/images/default.png');
+                                    ?>
+                                    <td>
+                                        <img class="img-fluid" width="100px"
+                                            src="{{ !$imageExists ? asset('uploads/default.png') : asset('uploads/images/' . $post->image) }}"
+                                            {{-- src="{{ $imageExists ? asset('uploads/images/'.$post->image) : asset('uploads/default.png') }}"  --}} alt="">
+                                    </td>
+                                    <td>{{ Str::limit($post->body, 150, '...') }}</td>
 
-    {{-- <td>Edit</td> --}}
-    <td><a href="{{ route('post.edit', $post->id) }}" class="btn btn-warning">Editer</a></td>
-    {{-- <td>Delete</td> --}}
-    <td>
-        <form action="{{ route('post.destroy', $post->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Supprimer</button>
-        </form>
-    </td>
+                                    {{-- <td>Edit</td> --}}
+                                    <td><a href="{{ route('post.edit', $post->id) }}"
+                                            class="btn btn-warning">Editer</a></td>
+                                    {{-- <td>Delete</td> --}}
+                                    <td>
+                                        <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                                        </form>
+                                    </td>
 
-  </tr>
-@endforeach
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

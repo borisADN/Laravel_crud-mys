@@ -2,9 +2,11 @@
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', fn () => view('welcome'));
 
 Route::resource('post', PostController::class);
 /*Cette ligne de code crée plusieurs routes pour le contrôleur PostController. 
@@ -18,6 +20,6 @@ En résumé, Route::resource('post', PostController::class) permet de déclarer 
 facilement toutes les routes nécessaires pour les opérations CRUD sur une ressource "post", en 
 utilisant les conventions RESTful de Laravel.
 
-pour voir toute les commandes php artisan route:nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnlist
+pour voir toute les commandes php artisan route:list
 */ 
 
